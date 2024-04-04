@@ -1,0 +1,83 @@
+<div class="ticketForm">
+  <h1>Ticket Form</h1>
+  <form [formGroup]="ticketForm" (ngSubmit)="onSubmit()">
+    <div>
+      <mat-form-field>
+        <mat-label for="projectName">Project Name: </mat-label>
+        <input
+          matInput
+          id="projectName"
+          type="text"
+          formControlName="projectName"
+        />
+      </mat-form-field>
+    </div>
+
+    <div>
+      <mat-form-field>
+        <mat-label for="assessorName">Assessor Name: </mat-label>
+        <input
+          matInput
+          id="assessorName"
+          type="text"
+          formControlName="assessorName"
+        />
+      </mat-form-field>
+    </div>
+
+    <div>
+      <mat-form-field>
+        <mat-label for="startDate">Start Date: </mat-label>
+        <input
+          matInput
+          id="startDate"
+          type="text"
+          formControlName="startDate"
+        />
+      </mat-form-field>
+    </div>
+
+    <div>
+      <mat-form-field>
+        <mat-label for="standard">Standard: </mat-label>
+        <input matInput id="standard" type="text" formControlName="standard" />
+      </mat-form-field>
+    </div>
+
+    <div>
+      <mat-form-field>
+        <mat-label for="sponsorName">Sponsor Name: </mat-label>
+        <input
+          matInput
+          id="sponsorName"
+          type="text"
+          formControlName="sponsorName"
+        />
+      </mat-form-field>
+    </div>
+
+    <div>
+      <mat-form-field>
+        <mat-label for="sponsorCompany">Sponsor Company: </mat-label>
+        <input
+          matInput
+          id="sponsorCompany"
+          type="text"
+          formControlName="sponsorCompany"
+        />
+      </mat-form-field>
+    </div>
+
+    <div>
+      <button
+        mat-raised-button
+        color="accent"
+        routerLink="/uploadFile"
+        routerLinkActive="active"
+        type="submit"
+      >
+        Next
+      </button>
+    </div>
+  </form>
+</div>
