@@ -1,11 +1,70 @@
-<div class="uploadFile">
-  <div class="uploadContainer">
-    <button mat-raised-button color="accent">upload File</button>
-  </div>
-
-  <br />
-  <div class="submitContainer">
-    <button mat-raised-button color="accent">upload Again</button>
-    <button mat-raised-button color="accent">Next</button>
-  </div>
+<!-- <div class="uploadFile">
+  <>
+  <mat-card>
+    <mat-card-content
+      ><ul>
+        <li></li>
+        <li>
+          <mat-progress-bar></mat-progress-bar>
+          <span id="file-label"> </span>
+        </li>
+        <li></li>
+      </ul>
+    </mat-card-content>
+    <mat-card-actions
+      ><button mat-raised-button color="accent">
+        <mat-icon>file_upload</mat-icon>
+        Upload
+      </button>
+    </mat-card-actions>
+  </mat-card>
+  <input type="file" />
 </div>
+
+<br />
+<div class="submitContainer">
+  <button mat-raised-button color="accent">upload Again</button>
+  <button mat-raised-button color="accent">Next</button>
+</div> -->
+<input
+  type="file"
+  #csvReader
+  name="Upload CSV"
+  id="txtFileUpload"
+  (change)="uploadListener($event)"
+  accept=".csv"
+/>
+<table class="minimalistBlack" *ngIf="records.length > 0">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>FirstName</th>
+      <th>LastName</th>
+      <th>Age</th>
+      <th>Position</th>
+      <th>Mobile</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let record of records; let i = index">
+      <td>
+        <span>{{ record.id }}</span>
+      </td>
+      <td>
+        <span>{{ record.firstName }}</span>
+      </td>
+      <td>
+        <span>{{ record.lastName }}</span>
+      </td>
+      <td>
+        <span>{{ record.age }}</span>
+      </td>
+      <td>
+        <span>{{ record.position }}</span>
+      </td>
+      <td>
+        <span>{{ record.mobile }}</span>
+      </td>
+    </tr>
+  </tbody>
+</table>
