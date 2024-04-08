@@ -1,0 +1,32 @@
+.pointScalerSection {
+  display: flex;
+  flex-direction: column;
+  margin: 12px 0;
+}
+.threePointScaler,
+.fivePointScaler {
+  margin: 0 12px;
+}
+form {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin: 10px;
+  width: 40%;
+}
+
+col-md-4 {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.form-row {
+  display: flex;
+  flex-wrap: nowrap;
+}
+
+.flex-item {
+  flex: 1 1 auto;
+  margin-right: 16px;
+}

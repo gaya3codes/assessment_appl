@@ -11,6 +11,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { CommonModule } from '@angular/common';
 import { CSVRecord } from '../csvDataModel';
+import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
 @Component({
   selector: 'app-upload-file',
   standalone: true,
@@ -21,6 +22,9 @@ import { CSVRecord } from '../csvDataModel';
     MatCardModule,
     MatProgressBarModule,
     CommonModule,
+    RouterOutlet,
+    RouterLinkActive,
+    RouterLink,
   ],
   templateUrl: './upload-file.component.html',
   styleUrl: './upload-file.component.scss',
