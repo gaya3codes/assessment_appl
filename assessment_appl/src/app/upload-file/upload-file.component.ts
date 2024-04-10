@@ -47,6 +47,7 @@ export class UploadFileComponent implements OnInit {
 
       reader.onload = () => {
         let csvData = reader.result;
+        console.log(reader.result);
         let csvRecordsArray = (<string>csvData).split(/\r\n|\n/);
 
         let headersRow = this.getHeaderArray(csvRecordsArray);

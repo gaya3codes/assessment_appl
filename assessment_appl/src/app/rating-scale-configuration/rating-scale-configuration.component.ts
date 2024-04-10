@@ -48,10 +48,7 @@ export class RatingScaleConfigurationComponent {
   });
 
   pointerScalerOptionsForm = this.fb.group({
-    pointerScalerOptionsArray: this.fb.array(
-      [this.pointerScalerOptions],
-      Validators.required
-    ),
+    pointerScalerOptionsArray: this.fb.array([], Validators.required),
   });
 
   constructor(private fb: FormBuilder) {
@@ -59,12 +56,11 @@ export class RatingScaleConfigurationComponent {
   }
 
   get pointerScalerOptionsArray(): FormArray {
-    return <FormArray>this.pointerScalerOptionsForm.value;
+    return this.pointerScalerOptionsForm.controls[
+      'pointerScalerOptionsArray'
+    ] as FormArray;
   }
 
-  set pointerScalerOptionsArray(value: pointerScalerOption) {
-    this.pointerScalerOptionsArray.push(value);
-  }
   onSubmit() {
     if (this.pointerScalerOptionsForm.valid) {
       console.log(this.pointerScalerOptionsForm.value);
@@ -72,16 +68,46 @@ export class RatingScaleConfigurationComponent {
     }
   }
 
-  isPointScalerSelected(value: number) {
+  addpointerScalerOption() {
+    const array = this.pointerScalerOptionsForm.controls
+      .pointerScalerOptionsArray as FormArray;
+    array.push(this.pointerScalerOptions);
+    //this.pointerScalerOptionsArray.push(this.pointerScalerOptions);
+    console.log(this.pointerScalerOptionsArray);
+  }
+
+  deletePointerScaleroption(pos: number) {
+    const array = this.pointerScalerOptionsForm.controls
+      .pointerScalerOptionsArray as FormArray;
+    array.controls.splice(pos, 2);
+    console.log(array);
+  }
+
+  isPointScalerSelected($event: any) {
     this.pointScalerSelected = false;
 
+    let value = $event.value;
     console.log(value);
-    let i = 0;
-    while (i < value) {
-      console.log(i);
-      this.pointerScalerOptionsArray.push(this.pointerScalerOptions);
-      i++;
+    if (this.pointerScalerOptionsArray.length !== 0) {
+      if (value === '3') {
+        this.deletePointerScaleroption(3);
+      } else if (value === '5') {
+        console.log(5);
+        for (let i = 0; i < 2; i++) {
+          console.log(i);
+          this.addpointerScalerOption();
+        }
+      }
     }
+    if (this.pointerScalerOptionsArray.length === 0) {
+      let i = 0;
+      while (i < value) {
+        console.log(i);
+        this.addpointerScalerOption();
+        i++;
+      }
+    }
+
     this.pointScalerSelected = true;
   }
 }

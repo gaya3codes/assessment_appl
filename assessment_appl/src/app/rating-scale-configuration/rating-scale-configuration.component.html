@@ -1,17 +1,14 @@
 <div class="ratingScaleConfigurator">
   <div class="column-md-4">
     <div class="col-md pointScalerSection">
-      <mat-radio-group aria-label="Select an option">
-        <mat-radio-button
-          value="3"
-          class="threePointScaler"
-          (click)="isPointScalerSelected(3)"
+      <mat-radio-group
+        aria-label="Select an option"
+        (change)="isPointScalerSelected($event)"
+      >
+        <mat-radio-button value="3" class="threePointScaler"
           >3 Point Scaler</mat-radio-button
         >
-        <mat-radio-button
-          value="5"
-          class="fivePointScaler"
-          (click)="isPointScalerSelected(5)"
+        <mat-radio-button value="5" class="fivePointScaler"
           >5 Point Scaler</mat-radio-button
         >
       </mat-radio-group>
@@ -21,34 +18,39 @@
     <div class="col-md pointScalerOptions">
       <div *ngIf="pointScalerSelected" class="pointScalerOptions">
         <form [formGroup]="pointerScalerOptionsForm" (ngSubmit)="onSubmit()">
-          <div
-            formArrayName="pointerScalerOptions"
-            class="form-row"
-            *ngFor="let item of pointerScalerOptionsArray.controls; index as i"
-          >
-            <mat-form-field class="flex-item">
-              <mat-label>Name</mat-label>
-              <input matInput type="text" formControlName="name" />
-            </mat-form-field>
-            <mat-form-field class="flex-item">
-              <mat-label>Weightage</mat-label>
-              <input
-                matInput
-                type="number"
-                min="0"
-                max="100"
-                formControlName="weightage"
-              />
-            </mat-form-field>
-            <mat-form-field class="flex-item">
-              <mat-label>Favorite Color</mat-label>
-              <mat-select formControlName="color">
-                @for (color of ['blue', 'green', 'yellow']; track color) {
-                <mat-option [value]="color">{{ color }}</mat-option>
-                }
-              </mat-select>
-            </mat-form-field>
-          </div>
+          <ng-container formArrayName="pointerScalerOptionsArray">
+            <div
+              *ngFor="
+                let option of pointerScalerOptionsArray.controls;
+                index as i
+              "
+            >
+              <ng-container [formGroupName]="i">
+                <mat-form-field class="flex-item">
+                  <mat-label for="name">Name</mat-label>
+                  <input matInput type="text" formControlName="name" />
+                </mat-form-field>
+                <mat-form-field class="flex-item">
+                  <mat-label for="weightage">Weightage</mat-label>
+                  <input
+                    matInput
+                    type="number"
+                    min="0"
+                    max="100"
+                    formControlName="weightage"
+                  />
+                </mat-form-field>
+                <mat-form-field class="flex-item">
+                  <mat-label for="color">Favorite Color</mat-label>
+                  <mat-select formControlName="color">
+                    @for (color of ['blue', 'green', 'yellow']; track color) {
+                    <mat-option [value]="color">{{ color }}</mat-option>
+                    }
+                  </mat-select>
+                </mat-form-field>
+              </ng-container>
+            </div>
+          </ng-container>
           <button
             mat-raised-button
             color="accent"

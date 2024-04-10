@@ -3,3 +3,4 @@ export class pointerScalerOption {
   weightage!: number;
   color!: String;
 }
+
